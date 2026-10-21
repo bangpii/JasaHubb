@@ -1,0 +1,11 @@
+//     <div className="w-screen -mx-4 sm:-mx-6">
+//   <div className="w-full h-[360px] sm:h-[520px] md:h-[680px] lg:h-[820px]">
+//     <Spline
+//       scene="https://prod.spline.design/n1SYycD5GKPIvoer/scene.splinecode"
+//       className="w-full h-full"
+//     />
+//   </div>
+// </div>
+
+
+    {/* <Spline scene="https://prod.spline.design/OgGcVgPFvhwzueEz/scene.splinecode" /> */}

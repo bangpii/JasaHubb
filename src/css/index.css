@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Antonio:wght@100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        color-scheme: dark;
+        --c-page: #000000;
+        --c-fg: #ffffff;
+        --c-muted: #a1a1aa;
+        --c-line: #2a2a2a;
+    }
+
+    html.light {
+        color-scheme: light;
+        --c-page: #f4f1ea;
+        --c-fg: #17150f;
+        --c-muted: #57534e;
+        --c-line: #dcd8d0;
+        /* Fallback polos bila WebGL tidak tersedia; kertas remuk asli
+           dirender oleh PaperBackground (shader ogl) di atas elemen ini. */
+        background-color: var(--c-page);
+    }
+
+    html.light body,
+    html.light #root {
+        background: transparent;
+    }
+
+    /* Section ber-className .bg-page dibuat transparan di tema terang
+       agar texture kertas di <html> terlihat menyeluruh */
+    html.light .bg-page {
+        background-color: transparent;
+    }
+
+    body {
+        @apply text-fg relative font-anton;
+        background-color: var(--c-page);
+        transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .bg-page {
+        background-color: var(--c-page);
+        transition: background-color 0.4s ease;
+    }
+
+    .text-fg,
+    .text-muted {
+        transition: color 0.4s ease;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+
+        /* Scrollbar eksternal — Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: #f49827 #141414;
+    }
+
+    /* Scrollbar eksternal — Chrome/Edge/Safari (hanya di html, container di dalam tetap default) */
+    html::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    html::-webkit-scrollbar-track {
+        background: #141414;
+    }
+
+    html::-webkit-scrollbar-thumb {
+        background: #f49827;
+        border-radius: 999px;
+        border: 3px solid #141414;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+        background: #ffb04a;
+    }
+
+    html::-webkit-scrollbar-corner {
+        background: #141414;
+    }
+
+    html.light {
+        scrollbar-color: #f49827 #e6e3dc;
+    }
+
+    html.light::-webkit-scrollbar-track {
+        background: #e6e3dc;
+    }
+
+    html.light::-webkit-scrollbar-thumb {
+        border-color: #e6e3dc;
+    }
+
+    html.light::-webkit-scrollbar-corner {
+        background: #e6e3dc;
+    }
+}
+
+/* Di luar @layer agar mengalahkan utility Tailwind (cascade layer > specificity) */
+html.light #mobileMenu {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--c-fg);
+}
+
+/* Spline 3D — tema terang.
+   Di tema gelap pinggiran kanvas ditutup vignette berwarna --c-page (hitam),
+   jadi menyatu. Di tema terang vignette itu jadi krem datar di atas texture
+   kertas WebGL = terlihat seperti watermark. Solusinya: vignette warna
+   disembunyikan, kanvas di-mask memudar ke transparan, dan kertas asli
+   (di belakang, z-index -10) tampil sendiri di pinggiran. */
+html.light .spline-vignette {
+    display: none;
+}
+
+html.light .spline-canvas {
+    -webkit-mask-image:
+        radial-gradient(100% 85% at 50% 45%, black 35%, transparent 55%),
+        linear-gradient(to bottom, transparent 0, black 4rem, black calc(100% - 6rem), transparent 100%);
+    mask-image:
+        radial-gradient(100% 85% at 50% 45%, black 35%, transparent 55%),
+        linear-gradient(to bottom, transparent 0, black 4rem, black calc(100% - 6rem), transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+

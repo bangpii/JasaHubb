@@ -1,0 +1,18 @@
+user : <i class='bx bxs-user'></i>
+
+phone : <i class='bx bxs-phone'></i>
+
+Vc : <i class='bx bxs-video'></i>
+
++ : <i class='bx bx-plus'></i>
+
+kamera : <i class='bx bxs-camera'></i>
+
+file: <i class='bx bxs-file'></i>
+
+mic : <i class='bx bxs-microphone'></i>
+
+Obrolan : <i class='bx bxs-chat-bubble'></i>
+
+
+

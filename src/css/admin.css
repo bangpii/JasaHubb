@@ -1,0 +1,133 @@
+.admin-root {
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Scroll internal: roda mouse & keyboard tetap jalan, tanpa scrollbar terlihat */
+.admin-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+  overscroll-behavior-x: none;
+}
+
+.admin-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.admin-chat-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.admin-chat-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.admin-root .magic-bento-card {
+  border-radius: 22px;
+}
+
+.admin-nav-item {
+  position: relative;
+}
+
+.admin-nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  border-radius: 999px;
+  background: #f49827;
+  transform: translateY(-50%);
+  transition: height 0.25s ease;
+}
+
+.admin-nav-item[data-active="true"]::after {
+  height: 22px;
+}
+
+.admin-chart-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.admin-service-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bento-track);
+  overflow: hidden;
+}
+
+.admin-service-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f49827, #ffc370);
+  box-shadow: 0 0 12px rgba(244, 152, 39, 0.5);
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.admin-fade-up {
+  animation: adminFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes adminFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Kursor tangan untuk seluruh elemen interaktif di modal login admin */
+.admin-gate-card,
+.admin-gate-card * {
+  cursor: pointer;
+}
+
+.admin-gate-card input[type="text"],
+.admin-gate-card input[type="password"],
+.admin-gate-card input[type="email"] {
+  cursor: text;
+}
+
+.admin-gate-card button:disabled {
+  cursor: not-allowed;
+}
+
+/* Uji autofill: cegah browser mewarnai field jadi abu/kuning & mengisi otomatis */
+.admin-gate-card input:-webkit-autofill,
+.admin-gate-card input:-webkit-autofill:hover,
+.admin-gate-card input:-webkit-autofill:focus,
+.admin-gate-card input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px #0e0e10 inset !important;
+  box-shadow: 0 0 0 1000px #0e0e10 inset !important;
+  caret-color: #ffffff;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-fade-up {
+    animation: none;
+  }
+  .admin-service-bar > span {
+    transition: none;
+  }
+  .admin-gate-border {
+    animation: none;
+  }
+}

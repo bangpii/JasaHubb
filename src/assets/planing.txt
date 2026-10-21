@@ -1,0 +1,7 @@
+| Komponen              | Perlu di-hosting?           | Fungsi                |
+| --------------------- | ----------------------------| --------------------- |
+| **React (Frontend)**  |  Vercel                     | UI UX user            |
+| **Node.js (Backend)** |  Render                     | API dan koneksi DB    |
+| **MangoDB (Database)**|  Atlas                      | Database Online       |
+
+Link Render      : https://dashboard.render.com/web/new
